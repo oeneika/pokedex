@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <title>Pokedex</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="navbar navbar-expand-md navbar-dark bg-blue box-shadow">
+          <div class="container d-flex justify-content-between">
+            <a href="index.html" class="navbar-brand d-flex align-items-center">
+              <h2>Pokedex</h2>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarsExampleDefault" style="">
+              <ul class="navbar-nav ml-auto">
+      
+                <li class="nav-item">
+                   <a class="nav-link" href="http://onokumus.com" target="_blank">Pokemones</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link" href="http://onokumus.com" target="_blank">Entrenadores</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="http://onokumus.com" target="_blank">Gimnasios</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="portada">
+        <div class="cont">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h2 class="text-uppercase">
+                  Pokedex
+                </h2>
+                <p>Desarrollado por: Alexander De Azevedo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="principal">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 py-3" v-for="(item,index) in listas">
+              <div class="contenido ">
+                <div class="imagen" v-if="index < 718">
+                  <img :src=" 'img/pokedex/'+ indexito(index) +'.png' " alt="" width="100%">
+                </div>
+                <div class="imagen" v-else>
+                  <img :src="'img/desconocido.jpg'" alt="" width="100%">
+                </div>
+                <div class="numero">
+                  <p class="text-center" >N.{{ indexito(index) }}</p>
+                </div>
+                <div class="nombre">
+                  <h4 class="text-center text-uppercase">{{ item.name }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <script type="text/javascript">
+    /*Simulamos que estamos usando una api*/
+    var urlPokemons = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=801';
+    new Vue({
+      el: '#app',
+      created: function(){
+        /*Cuando se crea la pagina e inicia se carga este metodo*/
+        this.getPokemons();
+      },
+      data:{
+        /*Creamos el arreglo que mantedrá almacenado los datos*/
+        listas: []
+      },
+      methods:{
+        getPokemons: function(){
+          /*Agarramos los datos de la url y si todo sale bien almacenamos en listas*/
+          axios.get(urlPokemons).then(response => {
+            this.listas = response.data.results
+          });
+        },
+         indexito: function (index) {
+          return index+1;
+        }
+      }
+    });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+body, h1, h2, h3, h4, h5, p, span{
+	margin: 0;
+	padding: 0;
+}
+
+/*Menú - Navbar*/
+.navbar{
+	background-image: linear-gradient(-90deg, #FF416C, #FF4B2B)!important;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+	color: white;
+}
+
+.portada{
+	background-image: linear-gradient(-90deg, #8A2387, #E94057, #F27121)!important;
+}
+
+.portada .cont{
+	background-image: url(../img/wallpaper1110.png);
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+	padding: 40px 0;
+}
+
+.portada h2,p{
+	color: white;
+}
+
+.contenido{
+	background-color: #f6f6f6;
+	border-radius: 10px;
+	color: white;
+	filter: opacity(.8);
+}
+
+.contenido:hover{
+	box-shadow: 0 4px 16px rgb(235, 75, 75);
+    transition: all 0.2s ease;
+    filter: opacity(1);
+}
+
+.contenido .imagen{
+	height: 255px;
+}
+
+.contenido .imagen img{
+	padding: 10px;
+}
+
+.contenido .numero{
+	background-image: linear-gradient(-90deg, #93291E, #ED213A)!important;
+}
+
+.contenido .nombre{
+	background-color: #D24235;
+	padding: 5px;
+	border-radius: 0 0 10px 10px;
+}
+
+@media (max-width: 767px){
+	.contenido .imagen{
+	height: 380px;
+	}
+}
+
+@media (min-width: 768px){
+	.contenido .imagen{
+	height: 160px;
+	}
+}
+
+@media (min-width: 1024px){
+	.contenido .imagen{
+	height: 280px;
+	}
+}
